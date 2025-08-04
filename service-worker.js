@@ -2,10 +2,10 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open('warewash-v1').then(cache => {
       return cache.addAll([
-        '/',
-        '/index.html',
-        '/ContentsEditor.html',
-        '/dist/output.css'
+        './',
+        './index.html',
+        './ContentsEditor.html',
+        './output.css'
       ]);
     })
   );
