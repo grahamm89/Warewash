@@ -3,148 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dishwasher Troubleshooting</title>
-
-  <!-- Tailwind v2 Play CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: { colors: { primary: '#2563eb' } }
-      }
-    };
-  </script>
-
+  <title>Warewash</title>
+  <link href="dist/output.css" rel="stylesheet">
   <link rel="manifest" href="manifest.json">
-  <style>
-    /* Minimal CSS to rotate chevrons on open */
-    details[open] .chev { transform: rotate(180deg); }
-  </style>
 </head>
 <body class="bg-gray-50 text-gray-900 font-sans">
-  <header class="bg-white/80 backdrop-blur shadow-sm sticky top-0 z-50">
-    <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold tracking-tight">Dishwasher Troubleshooting</h1>
-      <a href="ContentsEditor.html" class="hidden sm:inline-block bg-primary hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-sm transition">Edit Content</a>
-    </div>
-  </header>
-
-  <main class="max-w-4xl mx-auto px-4 md:px-6 py-6 md:py-10 space-y-8 md:space-y-10">
-    <!-- Section 0: Essential Tests (simple card grid) -->
-    <section class="bg-white rounded-xl shadow-sm p-6 md:p-8">
-      <h2 class="text-lg md:text-xl font-semibold mb-4 md:mb-6">Essential Tests</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
-        <a href="https://grahamm89.github.io/referencetools/detergent-concentration.html" target="_blank" rel="noopener"
-           class="flex items-center p-4 bg-blue-50 hover:bg-white rounded-lg shadow-sm transition border border-blue-100">
-          <span class="text-xl mr-3">🧪</span>
-          <span class="font-medium">Titration Test</span>
-        </a>
-        <a href="https://grahamm89.github.io/referencetools/water_hardness.html" target="_blank" rel="noopener"
-           class="flex items-center p-4 bg-blue-50 hover:bg-white rounded-lg shadow-sm transition border border-blue-100">
-          <span class="text-xl mr-3">💧</span>
-          <span class="font-medium">Water Hardness</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- Section 1: Symptoms -->
-    <details class="group bg-white rounded-xl shadow-sm p-6 md:p-8">
-      <summary class="cursor-pointer flex items-center justify-between">
-        <span class="text-lg md:text-xl font-semibold">1. Quick Symptom Lookup</span>
-        <svg class="chev w-5 h-5 text-gray-500 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-        </svg>
-      </summary>
-      <div class="mt-5 space-y-4">
-        <label for="symptom" class="block text-sm font-medium text-gray-700">Observed symptom or issue</label>
-        <select id="symptom" class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-          <option value="">— loading symptoms —</option>
-        </select>
-        <div id="symptomResult" class="hidden"></div>
-      </div>
-    </details>
-
-    <!-- Section 2: Essential Checks -->
-    <details class="group bg-white rounded-xl shadow-sm p-6 md:p-8">
-      <summary class="cursor-pointer flex items-center justify-between">
-        <span class="text-lg md:text-xl font-semibold">2. Essential Checks</span>
-        <svg class="chev w-5 h-5 text-gray-500 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-        </svg>
-      </summary>
-      <div class="mt-5 space-y-5">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label for="mMake" class="block text-sm font-medium text-gray-700">Machine make</label>
-            <input id="mMake" autocomplete="off" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-primary focus:border-primary" />
-          </div>
-          <div>
-            <label for="mModel" class="block text-sm font-medium text-gray-700">Machine model</label>
-            <input id="mModel" autocomplete="off" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-primary focus:border-primary" />
-          </div>
-        </div>
-
-        <template id="toggleTemplate">
-          <div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-            <div class="px-4 py-3 bg-gray-50 flex items-start justify-between">
-              <p class="font-medium text-gray-800 flex-1"></p>
-              <div class="ml-4 flex items-center space-x-2">
-                <input type="radio" class="hidden">
-                <label class="yes cursor-pointer px-3 py-1 rounded-full text-white bg-green-600 hover:bg-green-700 text-sm">Yes</label>
-                <input type="radio" class="hidden">
-                <label class="no cursor-pointer px-3 py-1 rounded-full text-white bg-red-600 hover:bg-red-700 text-sm">No</label>
-              </div>
-            </div>
-            <div class="note hidden px-4 py-3 text-sm text-blue-700 bg-blue-50 border-t border-blue-100"></div>
-          </div>
-        </template>
-
-        <div id="toggleHolder" class="space-y-3">
-          <p class="text-sm text-gray-500 italic">Loading questions…</p>
-        </div>
-
-        <div id="checklistResult" class="hidden"></div>
-
-        <button id="copyBtn" class="w-full sm:w-auto mt-2 bg-primary text-white px-4 py-2 rounded-lg shadow-sm hover:bg-blue-600 transition">
-          Copy Summary
-        </button>
-      </div>
-    </details>
-
-    <!-- Section 3: Chemical Tests -->
-    <details id="chemTests" class="group bg-white rounded-xl shadow-sm p-6 md:p-8">
-      <summary class="cursor-pointer flex items-center justify-between">
-        <span class="text-lg md:text-xl font-semibold">3. Chemical Tests</span>
-        <svg class="chev w-5 h-5 text-gray-500 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-        </svg>
-      </summary>
-      <div class="mt-5 space-y-4">
-        <div id="chemFilters" class="flex flex-wrap gap-2"></div>
-        <ul id="chemTestsList" class="space-y-3">
-          <li class="text-gray-500 text-sm"><em>Loading tests…</em></li>
-        </ul>
-      </div>
-    </details>
-  </main>
-
-  <script src="app.js"></script>
-
+  <h1 class="text-2xl font-bold text-center mt-10">Warewash Troubleshooting</h1>
   <script>
-    // Rotate chevrons on open/close for all details
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('details').forEach(d => {
-        const chev = d.querySelector('.chev');
-        const set = () => { if (chev) chev.style.transform = d.open ? 'rotate(180deg)' : 'rotate(0deg)'; };
-        set();
-        d.addEventListener('toggle', set);
-      });
-    });
-
-    // Service worker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js')
-        .then(reg => console.log('SW registered:', reg))
+        .then(reg => console.log('Service Worker registered:', reg))
         .catch(err => console.error('SW registration failed:', err));
     }
   </script>

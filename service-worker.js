@@ -1,18 +1,15 @@
-
-const CACHE_NAME = 'dw-helper-v1';
-const urlsToCache = [
-  '/',
-  '/index.html',
-  '/app.js',
-  '/app_data.json'
-];
-
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
+    caches.open('warewash-v1').then(cache => {
+      return cache.addAll([
+        '/',
+        '/index.html',
+        '/ContentsEditor.html',
+        '/dist/output.css'
+      ]);
+    })
   );
 });
-
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request).then(response => response || fetch(event.request))
