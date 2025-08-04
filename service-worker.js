@@ -5,7 +5,7 @@ self.addEventListener('install', event => {
         '/',
         '/index.html',
         '/ContentsEditor.html',
-        '/dist/output.css'
+        './output.css'
       ]);
     })
   );
