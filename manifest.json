@@ -1,10 +1,10 @@
 {
-  "name": "Warewash Dishwasher Troubleshooting Tool",
-  "short_name": "Warewash",
-  "start_url": "/index.html",
+  "name": "Dishwasher Helper",
+  "short_name": "DW Helper",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#1e3a8a",
+  "theme_color": "#2563eb",
   "icons": [
     {
       "src": "https://grahamm89.github.io/github/assets/icon-192.png",
@@ -15,23 +15,6 @@
       "src": "https://grahamm89.github.io/github/assets/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
-    }
-  ],
-  "orientation": "portrait",
-  "description": "Troubleshoot dishwasher issues, run chemical tests, and perform essential checks\u2014offline ready PWA for field use.",
-  "lang": "en-GB",
-  "categories": [
-    "utilities",
-    "productivity",
-    "tools"
-  ],
-  "prefer_related_applications": false,
-  "scope": "/",
-  "screenshots": [
-    {
-      "src": "https://grahamm89.github.io/github/assets/screenshot1.png",
-      "type": "image/png",
-      "sizes": "1080x1920"
     }
   ]
 }

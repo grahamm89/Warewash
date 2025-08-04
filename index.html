@@ -2,13 +2,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Warewash App</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dishwasher Troubleshooting</title>
+  <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
+<link rel="manifest" href="manifest.json">
 </head>
-<body class="p-4">
-  <h1 class="text-xl font-bold text-blue-600">Welcome to Warewash</h1>
-  <p class="text-gray-700">Optimized for field use.</p>
+<body class="bg-gray-100 text-gray-900 font-sans">
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold">Dishwasher Troubleshooting</h1>
+      <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded shadow">About</button>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 py-6 space-y-10">
+    <section class="bg-white p-6 rounded-lg shadow">
+      <h2 class="text-lg font-semibold mb-4">Essential Tests</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a href="https://grahamm89.github.io/referencetools/detergent-concentration.html" target="_blank"
+           class="flex items-center p-4 bg-blue-50 hover:bg-white rounded-lg shadow transition">
+          🧪 <span class="ml-3 font-medium">Titration Test</span>
+        </a>
+        <a href="https://grahamm89.github.io/referencetools/water_hardness.html" target="_blank"
+           class="flex items-center p-4 bg-blue-50 hover:bg-white rounded-lg shadow transition">
+          💧 <span class="ml-3 font-medium">Water Hardness</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="bg-white p-6 rounded-lg shadow">
+      <h2 class="text-lg font-semibold mb-4">Symptom Lookup</h2>
+      <label for="symptom" class="block mb-2 text-sm font-medium">Observed symptom or issue:</label>
+      <select id="symptom" class="w-full p-2 border rounded">
+        <option>— loading symptoms —</option>
+      </select>
+      <div id="symptomResult" class="mt-4"></div>
+    </section>
+
+    <section class="bg-white p-6 rounded-lg shadow">
+      <h2 class="text-lg font-semibold mb-4">Essential Checks</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input id="mMake" placeholder="Machine Make" class="p-2 border rounded w-full" />
+        <input id="mModel" placeholder="Machine Model" class="p-2 border rounded w-full" />
+      </div>
+      <div id="toggleHolder" class="mt-6 space-y-4">
+        <p class="text-sm text-gray-500 italic">Loading questions…</p>
+      </div>
+      <div id="checklistResult" class="mt-4"></div>
+      <button id="copyBtn" class="mt-4 bg-green-500 text-white px-4 py-2 rounded shadow hover:bg-green-600">
+        Copy Summary
+      </button>
+    </section>
+
+    <section class="bg-white p-6 rounded-lg shadow">
+      <h2 class="text-lg font-semibold mb-4">Chemical Tests</h2>
+      <ul id="chemTestsList" class="list-disc list-inside space-y-1">
+        <li><em>Loading tests…</em></li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(reg => console.log('SW registered:', reg))
+      .catch(err => console.error('SW registration failed:', err));
+  }
+</script>
 </body>
 </html>
