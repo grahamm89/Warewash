@@ -1,11 +1,14 @@
 
-// Ensure everything waits for DOM to be ready
 document.addEventListener("DOMContentLoaded", () => {
   const symptomsContainer = document.getElementById("symptoms");
   const questionsContainer = document.getElementById("questions");
   const testsContainer = document.getElementById("chemicalTests");
 
-  fetch('./app_data.json')
+  // Ensure fetch works on GitHub Pages subdirectory
+  const basePath = location.pathname.replace(/\/[^\/]*$/, "/");
+  const jsonURL = basePath + 'app_data.json';
+
+  fetch(jsonURL)
     .then(response => {
       if (!response.ok) throw new Error('Failed to load app_data.json');
       return response.json();
@@ -56,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(err => {
       console.error("Error loading app_data.json:", err);
       if (symptomsContainer) {
-        symptomsContainer.innerHTML = "<p class='text-red-600'>Failed to load data. Please try refreshing or check your GitHub Pages setup.</p>";
+        symptomsContainer.innerHTML = "<p class='text-red-600'>Failed to load data. Check GitHub Pages path or JSON.</p>";
       }
     });
 });
