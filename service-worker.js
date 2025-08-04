@@ -1,5 +1,5 @@
 
-const CACHE_NAME = 'dw-helper-v2';
+const CACHE_NAME = 'dw-helper-v1';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -16,19 +16,5 @@ self.addEventListener('install', event => {
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request).then(response => response || fetch(event.request))
-  );
-});
-
-
-self.addEventListener('activate', event => {
-  const allowedCaches = [CACHE_NAME];
-  event.waitUntil(
-    caches.keys().then(keys => 
-      Promise.all(keys.map(key => {
-        if (!allowedCaches.includes(key)) {
-          return caches.delete(key);
-        }
-      }))
-    ).then(() => self.clients.claim())
   );
 });
